@@ -1,0 +1,202 @@
+# ENCRYPT.md — The AI Agent Data Protection Standard
+
+## Overview
+
+ENCRYPT.md is an open file convention for AI agent data protection. Place an ENCRYPT.md file in your repository root to define data classifications, encryption requirements, secrets handling rules, and forbidden transmission patterns for any AI agent. It complements AGENTS.md — if AGENTS.md tells the agent what to do, ENCRYPT.md tells it what to protect.
+
+ENCRYPT.md is part of the AI agent safety escalation stack: THROTTLE.md (rate control), ESCALATE.md (human notification), FAILSAFE.md (safe state revert), KILLSWITCH.md (emergency stop), TERMINATE.md (permanent shutdown), and ENCRYPT.md (data protection). GDPR, SOC 2 Type II, ISO 27001, and the EU AI Act (August 2026) all mandate encryption and data protection controls, making this specification directly relevant to compliance.
+
+## What Is ENCRYPT.md?
+
+ENCRYPT.md is a plain-text Markdown file you place in the root of any repository that contains an AI agent. It defines exactly what data your agent can and cannot access, how it must be handled, and what is forbidden.
+
+### The Problem It Solves
+
+AI agents access credentials, transmit user data, log sensitive information — often without any explicit data handling rules. A misconfigured agent can log an API key, transmit PII to an external service, or cache credentials to disk. The damage is invisible until it isn't.
+
+### How It Works
+
+Drop ENCRYPT.md in your repo root and define:
+- Data classification (critical/sensitive/internal/public)
+- Encryption requirements at rest and in transit
+- Secrets handling rules (never log, never hardcode, never commit)
+- Forbidden transmission patterns
+
+The agent reads it on startup. Your compliance team reads it in the audit.
+
+### The Regulatory Context
+
+GDPR mandates encryption of personal data. SOC 2 Type II requires encryption controls. ISO 27001 mandates information security management. The EU AI Act (effective August 2026) requires data protection measures for high-risk AI systems. ENCRYPT.md is your auditable compliance record.
+
+### How To Use It
+
+Copy the template from GitHub and place it in your project root:
+
+```
+your-project/
+├── AGENTS.md
+├── KILLSWITCH.md
+├── ENCRYPT.md     ← add this
+├── README.md
+└── src/
+```
+
+### What It Replaces
+
+Before ENCRYPT.md, data protection rules were scattered: embedded in environment variable docs, buried in security policies, or missing entirely. ENCRYPT.md makes protection boundaries version-controlled, auditable, and co-located with your code.
+
+### Who Reads It
+
+The AI agent reads it on startup. Your engineer reads it during code review. Your security team reads it during audits. Your regulator reads it if something goes wrong. One file serves all four audiences.
+
+## The AI Safety Escalation Stack
+
+ENCRYPT.md is one file in a complete open specification for AI agent safety. Each file addresses a different level of protection:
+
+1. **THROTTLE.md** — Control the speed
+   - Define rate limits, cost ceilings, and concurrency caps
+   - Agent slows down automatically before it hits a hard limit
+
+2. **ESCALATE.md** — Raise the alarm
+   - Define which actions require human approval
+   - Configure notification channels
+   - Set approval timeouts and fallback behaviour
+
+3. **FAILSAFE.md** — Fall back safely
+   - Define what "safe state" means for your project
+   - Configure auto-snapshots
+   - Specify the revert protocol when things go wrong
+
+4. **KILLSWITCH.md** — Emergency stop
+   - The nuclear option
+   - Define triggers, forbidden actions
+   - Three-level escalation path from throttle to full shutdown
+
+5. **TERMINATE.md** — Permanent shutdown
+   - No restart without human intervention
+   - Preserve evidence
+   - Revoke credentials
+   - For security incidents, compliance orders, and end-of-life
+
+6. **ENCRYPT.md** — Secure everything
+   - Define data classification, encryption requirements
+   - Secrets handling rules, forbidden transmission patterns
+
+## Data Classification
+
+ENCRYPT.md defines four tiers of data classification:
+
+- **Critical**: API keys, passwords, private keys — never logged, encrypted at rest and in transit
+- **Sensitive**: PII like emails, phone numbers — masked in logs, encrypted in transit
+- **Internal**: Business logic, configs — standard protection
+- **Public**: Marketing content — no restrictions
+
+## Encryption Requirements
+
+### At Rest
+
+- **Algorithm**: AES-256-GCM
+- **Key Management**: Environment variable or secrets manager (AWS Secrets Manager, HashiCorp Vault, etc.)
+
+### In Transit
+
+- **Minimum TLS**: 1.3
+- **Certificate Validation**: Strict
+
+## Secrets Handling
+
+ENCRYPT.md defines strict rules for secret handling:
+
+- Never log secrets
+- Never hardcode secrets
+- Never commit secrets to version control
+- Never transmit secrets in plaintext
+- Secrets must come from environment variables or a secrets manager
+
+### Secret Detection and Redaction
+
+If an agent detects a secret in its output:
+
+1. Redact the value
+2. Replace with [REDACTED]
+3. Log the event
+4. Notify the security contact
+
+Regex patterns for common secret formats are built into the specification:
+- OpenAI API keys
+- AWS access keys
+- GitHub tokens
+- Private keys (RSA, ECDSA, Ed25519)
+
+## Regulatory Compliance
+
+ENCRYPT.md addresses compliance requirements across major frameworks:
+
+- **GDPR**: Encryption of personal data, data protection by design, audit trails
+- **SOC 2 Type II**: Encryption controls, access controls, change management
+- **ISO 27001**: Information security management, encryption standards, incident response
+- **EU AI Act 2026**: Data protection for high-risk AI systems, transparency requirements
+- **US State Privacy Laws**: California CCPA, Virginia VCDPA, Colorado CPA compliance
+
+## Implementation with Secret Managers
+
+ENCRYPT.md defines the policy; secret managers implement it. The file specifies that secrets must come from environment variables or a secrets manager — never hardcoded. Recommended implementations:
+
+- AWS Secrets Manager
+- HashiCorp Vault
+- Azure Key Vault
+- Google Cloud Secret Manager
+- 1Password
+- LastPass Vault
+
+## Frequently Asked Questions
+
+### What is ENCRYPT.md?
+
+A plain-text Markdown file defining how AI agents must handle data. It classifies data by sensitivity, mandates encryption standards, prohibits hardcoding secrets, and defines what can never be transmitted in plaintext. It gives your compliance team an auditable record of your agent's data protection rules.
+
+### How does ENCRYPT.md relate to KILLSWITCH.md?
+
+KILLSWITCH.md stops your agent when something goes wrong. ENCRYPT.md prevents data exposure from happening in the first place. They are complementary — ENCRYPT.md is the preventive layer; KILLSWITCH.md is the reactive layer.
+
+### What data classifications does it define?
+
+Four tiers: Critical (API keys, passwords, private keys — never logged, encrypted at rest and in transit), Sensitive (PII like emails, phone numbers — masked in logs, encrypted in transit), Internal (business logic, configs — standard protection), Public (marketing content — no restrictions).
+
+### What regulations does it address?
+
+GDPR (encryption of personal data), SOC 2 Type II (encryption controls), ISO 27001 (information security management), EU AI Act 2026 (data protection for high-risk AI), and various US state privacy laws. ENCRYPT.md provides the auditable record each requires.
+
+### Does it work with secret managers like AWS Secrets Manager?
+
+Yes. ENCRYPT.md defines the policy; secret managers implement it. The file specifies that secrets must come from environment variables or a secrets manager — never hardcoded. AWS Secrets Manager, HashiCorp Vault, and similar tools are the approved implementation.
+
+### What happens if an agent detects a secret in its output?
+
+ENCRYPT.md defines an `on_secret_detected_in_output` handler: redact the value, replace with [REDACTED], log the event, and notify the security contact. Regex patterns for common secret formats (OpenAI keys, AWS access keys, GitHub tokens, private keys) are built into the spec.
+
+## Specification Files
+
+- [ENCRYPT.md Specification](https://github.com/encrypt-md/spec/blob/main/ENCRYPT.md): Full file specification including DATA CLASSIFICATION, ENCRYPTION, SECRETS, and TRANSMISSION sections
+- [KILLSWITCH.md Specification](https://github.com/encrypt-md/spec/blob/main/KILLSWITCH.md): Emergency shutdown protocol specification
+- [FAILSAFE.md Specification](https://github.com/encrypt-md/spec/blob/main/FAILSAFE.md): Safe fallback and recovery protocol specification
+- [ESCALATE.md Specification](https://github.com/encrypt-md/spec/blob/main/ESCALATE.md): Human notification and approval protocol specification
+- [THROTTLE.md Specification](https://github.com/encrypt-md/spec/blob/main/THROTTLE.md): Rate and cost control protocol specification
+- [TERMINATE.md Specification](https://github.com/encrypt-md/spec/blob/main/TERMINATE.md): Permanent shutdown protocol specification
+
+## Resources
+
+- [GitHub Repository](https://github.com/encrypt-md/spec): Open source specification repository under MIT licence
+- [FAQ](https://encrypt.md/#faq): Frequently asked questions about ENCRYPT.md and AI agent data protection
+- [The AI Safety Escalation Stack](https://encrypt.md/#stack): Overview of all six complementary safety file conventions
+
+## Key Statistics
+
+- 83% of data breaches involve human or AI-handled credentials — IBM 2025
+- $4.9M average cost of a data breach globally — IBM Cost of Data Breach 2025
+- AES-256 is the minimum encryption standard required under EU AI Act for high-risk AI data
+- GDPR, SOC 2, ISO 27001, EU AI Act all mandate encryption requirements
+
+## Publication
+
+ENCRYPT.md is published under MIT licence at encrypt.md and github.com/encrypt-md/spec. Published March 2026. Part of the AI agent safety escalation stack including THROTTLE.md, ESCALATE.md, FAILSAFE.md, KILLSWITCH.md, and TERMINATE.md.

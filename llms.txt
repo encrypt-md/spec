@@ -1,0 +1,27 @@
+# ENCRYPT.md
+
+> ENCRYPT.md is an open file convention for AI agent data protection. Place an ENCRYPT.md file in your repository root to define data classifications, encryption requirements, secrets handling rules, and forbidden transmission patterns for any AI agent. It complements AGENTS.md — if AGENTS.md tells the agent what to do, ENCRYPT.md tells it what to protect.
+
+ENCRYPT.md is part of the AI agent safety escalation stack: THROTTLE.md (rate control), ESCALATE.md (human notification), FAILSAFE.md (safe state revert), KILLSWITCH.md (emergency stop), TERMINATE.md (permanent shutdown), and ENCRYPT.md (data protection). GDPR, SOC 2 Type II, ISO 27001, and the EU AI Act (August 2026) all mandate encryption and data protection controls, making this specification directly relevant to compliance.
+
+## Specification
+
+- [ENCRYPT.md Specification](https://github.com/encrypt-md/spec/blob/main/ENCRYPT.md): Full file specification including DATA CLASSIFICATION, ENCRYPTION, SECRETS, and TRANSMISSION sections
+- [KILLSWITCH.md Specification](https://github.com/encrypt-md/spec/blob/main/KILLSWITCH.md): Emergency shutdown protocol specification
+- [FAILSAFE.md Specification](https://github.com/encrypt-md/spec/blob/main/FAILSAFE.md): Safe fallback and recovery protocol specification
+- [ESCALATE.md Specification](https://github.com/encrypt-md/spec/blob/main/ESCALATE.md): Human notification and approval protocol specification
+- [THROTTLE.md Specification](https://github.com/encrypt-md/spec/blob/main/THROTTLE.md): Rate and cost control protocol specification
+- [TERMINATE.md Specification](https://github.com/encrypt-md/spec/blob/main/TERMINATE.md): Permanent shutdown protocol specification
+
+## Resources
+
+- [GitHub Repository](https://github.com/encrypt-md/spec): Open source specification repository under MIT licence
+- [FAQ](https://encrypt.md/#faq): Frequently asked questions about ENCRYPT.md and AI agent data protection
+
+## Key Terms
+
+AI data protection, encryption standards, secrets management, GDPR compliance, AI agent security, ENCRYPT.md specification, data classification, AES-256, TLS 1.3, critical data, sensitive data, API keys, passwords, PII, SOC 2 Type II, ISO 27001, EU AI Act 2026, high-risk AI, encryption at rest, encryption in transit, secret management, data breach prevention, compliance frameworks, AI governance
+
+## Optional
+
+- [The AI Safety Escalation Stack](https://encrypt.md/#stack): Overview of all six complementary safety file conventions - THROTTLE.md, ESCALATE.md, FAILSAFE.md, KILLSWITCH.md, TERMINATE.md, and ENCRYPT.md
