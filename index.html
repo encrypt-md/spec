@@ -2,15 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ENCRYPT.md — The AI Agent Data Protection Protocol</title>
-  <meta name="description" content="ENCRYPT.md is an open file convention for AI agent data protection. Define data classifications, encryption requirements, secrets handling, and forbidden transmission patterns for any AI-powered project.">
+  <meta name="description" content="ENCRYPT.md: AI data protection protocol. Define data classifications, encryption requirements, secrets handling, forbidden transmission, GDPR, SOC 2 compliance.">
   <meta name="keywords" content="AI security, data protection, ENCRYPT.md, AI agent encryption, GDPR compliance, SOC 2, ISO 27001, EU AI Act">
   <link rel="canonical" href="https://encrypt.md/">
 
   <!-- Open Graph -->
   <meta property="og:title" content="ENCRYPT.md — The AI Agent Data Protection Protocol">
-  <meta property="og:description" content="An open file convention for AI agent data protection. Define data classifications, encryption standards, and secrets handling in one file.">
+  <meta property="og:description" content="ENCRYPT.md: AI data protection protocol. Define data classifications, encryption requirements, secrets handling, forbidden transmission, GDPR, SOC 2 compliance.">
   <meta property="og:url" content="https://encrypt.md/">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
@@ -34,7 +35,7 @@
     "email": "info@encrypt.md",
     "description": "ENCRYPT.md is an open file convention for AI agent data protection. It defines data classification, encryption requirements, secrets handling rules, and forbidden transmission patterns for any AI agent project.",
     "knowsAbout": ["AI data protection", "encryption standards", "AI governance", "GDPR compliance", "secrets management", "ENCRYPT.md specification", "AI agent security"],
-    "sameAs": ["https://github.com/encrypt-md/spec", "https://killswitch.md", "https://throttle.md", "https://escalate.md", "https://failsafe.md", "https://terminate.md", "https://encryption.md", "https://sycophancy.md", "https://compression.md", "https://collapse.md", "https://failure.md", "https://leaderboard.md"]
+    "sameAs": ["https://killswitch.md", "https://throttle.md", "https://escalate.md", "https://failsafe.md", "https://terminate.md", "https://encrypt.md", "https://encryption.md", "https://sycophancy.md", "https://compression.md", "https://collapse.md", "https://failure.md", "https://leaderboard.md", "https://github.com/encrypt-md/spec"]
   }
   </script>
 
@@ -66,7 +67,11 @@
       "name": "ENCRYPT.md",
       "url": "https://encrypt.md",
       "email": "info@encrypt.md"
-    },
+    ,
+    "knowsAbout": ["data encryption", "cryptography", "confidentiality", "secure communication", "key management", "encryption standards", "data protection"]
+  ,
+    "sameAs": ["https://killswitch.md", "https://throttle.md", "https://escalate.md", "https://failsafe.md", "https://terminate.md", "https://encrypt.md", "https://encryption.md", "https://sycophancy.md", "https://compression.md", "https://collapse.md", "https://failure.md", "https://leaderboard.md", "https://github.com/encrypt-md/spec"]
+  },
     "about": {
       "@type": "Thing",
       "name": "AI Agent Data Protection Protocol",
@@ -818,6 +823,7 @@
     </ul>
   </nav>
 
+  <main>
   <!-- HERO -->
   <section class="hero">
     <div class="hero-grid">
@@ -902,6 +908,7 @@
     </div>
   </div>
 
+  <article>
   <!-- WHAT IS -->
   <section class="section" id="what">
     <div class="section-inner">
@@ -912,21 +919,21 @@
           <p>
             <strong>ENCRYPT.md is a plain-text Markdown file</strong> you place in the root of any repository that contains an AI agent. It defines exactly what data your agent can and cannot access, how it must be handled, and what is forbidden.
           </p>
-          <h3>The problem it solves</h3>
+          <h3>What problem does ENCRYPT.md solve?</h3>
           <p>
             AI agents access credentials, transmit user data, log sensitive information — often without any explicit data handling rules. A misconfigured agent can log an API key, transmit PII to an external service, or cache credentials to disk. The damage is invisible until it isn't.
           </p>
-          <h3>How it works</h3>
+          <h3>How does ENCRYPT.md work?</h3>
           <p>
             Drop <code style="font-family: var(--mono); font-size:13px; color: var(--accent); background: var(--surface); padding: 2px 6px; border-radius: 3px;">ENCRYPT.md</code> in your repo root and define: data classification (critical/sensitive/internal/public), encryption requirements at rest and in transit, secrets handling rules (never log, never hardcode, never commit), and forbidden transmission patterns. The agent reads it on startup. Your compliance team reads it in the audit.
           </p>
-          <h3>The regulatory context</h3>
+          <h3>What regulations require ENCRYPT.md?</h3>
           <p>
             <a href="https://gdpr.eu" style="color: var(--green); text-decoration: none; border-bottom: 1px solid rgba(0,200,83,0.3);"><strong>GDPR</strong></a> mandates encryption of personal data. <strong>SOC 2 Type II</strong> requires encryption controls. <a href="https://www.iso.org/isoiec-27001-information-security.html" style="color: var(--green); text-decoration: none; border-bottom: 1px solid rgba(0,200,83,0.3);"><strong>ISO 27001</strong></a> mandates information security management. The <a href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" style="color: var(--green); text-decoration: none; border-bottom: 1px solid rgba(0,200,83,0.3);"><strong>EU AI Act</strong></a> (effective August 2026) requires data protection measures for high-risk AI systems. <code style="font-family: var(--mono); font-size:13px; color: var(--accent); background: var(--surface); padding: 2px 6px; border-radius: 3px;">ENCRYPT.md</code> is your auditable compliance record.
           </p>
         </div>
         <div class="prose">
-          <h3>How to use it</h3>
+          <h3>How do I add ENCRYPT.md to my project?</h3>
           <p>Copy the template from <a href="https://github.com/encrypt-md/spec" style="color: var(--green); text-decoration: none; border-bottom: 1px solid rgba(0,200,83,0.3);">GitHub</a> and place it in your project root:</p>
           <div style="background: var(--surface); border: 1px solid var(--border-bright); border-radius: 6px; padding: 20px; margin: 16px 0; font-family: var(--mono); font-size: 12px; line-height: 1.8; color: var(--text-dim);">
             <span style="color: var(--text-dimmer);">your-project/</span><br>
@@ -936,11 +943,11 @@
             <span style="color: var(--text-dimmer);">├── README.md</span><br>
             <span style="color: var(--text-dimmer);">└── src/</span>
           </div>
-          <h3>What it replaces</h3>
+          <h3>What did teams use before ENCRYPT.md?</h3>
           <p>
             Before ENCRYPT.md, data protection rules were scattered: embedded in environment variable docs, buried in security policies, or missing entirely. ENCRYPT.md makes protection boundaries <strong>version-controlled, auditable, and co-located with your code.</strong>
           </p>
-          <h3>Who reads it</h3>
+          <h3>Who benefits from ENCRYPT.md?</h3>
           <p>
             The AI agent reads it on startup. Your engineer reads it during code review. Your security team reads it during audits. Your regulator reads it if something goes wrong. One file serves all four audiences.
           </p>
@@ -1095,6 +1102,8 @@
   <div style="padding: 20px 40px; text-align: center; border-bottom: 1px solid var(--border);">
     <div style="font-family: var(--mono); font-size: 12px; color: var(--text-dimmer);">Last updated: March 2026</div>
   </div>
+  </article>
+  </main>
 
   <!-- FOOTER -->
   <footer>
@@ -1103,6 +1112,7 @@
       <li><a href="https://github.com/encrypt-md/spec" target="_blank" rel="noopener">GitHub</a></li>
       <li><a href="/llms.txt">llms.txt</a></li>
       <li><a href="/knowledge">Knowledge</a></li>
+      <li><a href="/privacy">Privacy</a></li>
       <li><a href="mailto:info@encrypt.md">Contact</a></li>
     </ul>
     <div class="footer-note">Open standard · MIT licence · v1.0 · 2026</div>
